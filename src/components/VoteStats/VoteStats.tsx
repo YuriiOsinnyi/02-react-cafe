@@ -3,12 +3,15 @@ import css from "./VoteStats.module.css";
 
 interface VoteStatsProps {
   votes: Votes;
+  totalVotes: number;
+  positiveRate: number;
 }
 
-export const VoteStats = ({ votes }: VoteStatsProps) => {
-  const total = votes.good + votes.neutral + votes.bad;
-  const positive = total > 0 ? Math.round((votes.good / total) * 100) : 0;
-
+export const VoteStats = ({
+  votes,
+  totalVotes,
+  positiveRate,
+}: VoteStatsProps) => {
   return (
     <div className={css.container}>
       <p className={css.stat}>
@@ -21,10 +24,10 @@ export const VoteStats = ({ votes }: VoteStatsProps) => {
         Bad: <strong>{votes.bad}</strong>
       </p>
       <p className={css.stat}>
-        Total: <strong>{total}</strong>
+        Total: <strong>{totalVotes}</strong>
       </p>
       <p className={css.stat}>
-        Positive: <strong>{positive}%</strong>
+        Positive: <strong>{positiveRate}%</strong>
       </p>
     </div>
   );
